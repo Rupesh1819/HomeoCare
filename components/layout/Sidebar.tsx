@@ -133,7 +133,7 @@ export function Sidebar({
           <span style={{ textAlign: 'left' }}>
             <small>Current branch</small>
             <strong style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '140px' }}>
-              {settings?.branches?.[0]?.name || "Pune Central Clinic"}
+              {settings?.branches?.[0]?.name || "Navgaon Clinic"}
             </strong>
           </span>
           <ChevronDown size={15} />

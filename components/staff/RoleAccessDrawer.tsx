@@ -77,10 +77,10 @@ export function RoleAccessDrawer({ isOpen, onClose, role }: RoleAccessDrawerProp
   const permissions = PERMISSIONS[normalizedRole] || PERMISSIONS["RECEPTIONIST"];
   const description = ROLE_DESCRIPTIONS[normalizedRole] || "Staff member access level.";
 
+  if (!isOpen) return null;
+
   return (
-    <>
-      {isOpen && (
-        <div className="drawer-layer">
+    <div className="drawer-layer">
           <div className="drawer-scrim" onClick={onClose} />
           <div className="drawer drawer-open">
         <div className="drawer-header">
@@ -140,8 +140,6 @@ export function RoleAccessDrawer({ isOpen, onClose, role }: RoleAccessDrawerProp
           </button>
         </div>
       </div>
-      </div>
-      )}
-    </>
+    </div>
   );
 }

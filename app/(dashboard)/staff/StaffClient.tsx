@@ -155,7 +155,7 @@ export function StaffClient({ data }: { data: StaffData }) {
           </select>
           <select>
             <option>All branches</option>
-            <option>Pune Central</option>
+            <option>Navgaon</option>
             <option>Aundh Branch</option>
           </select>
         </div>

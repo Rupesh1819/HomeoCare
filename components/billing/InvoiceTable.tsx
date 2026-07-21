@@ -71,7 +71,7 @@ export function InvoiceTable({ invoices }: { invoices: InvoiceData[] }) {
                       downloadInvoicePDF({
                         invoiceNumber: inv.id,
                         clinicName: "HomeoCare Pro",
-                        branchName: "Pune Central Clinic",
+                        branchName: "Navgaon Clinic",
                         patientName: inv.patient,
                         date: inv.date,
                         amount: inv.amount,

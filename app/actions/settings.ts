@@ -88,11 +88,11 @@ export async function getClinicSettings() {
         language: "en",
         branches: {
           create: {
-            name: "Pune Central",
+            name: "Navgaon Clinic",
             code: "PUNE-HQ",
             phone: "+91 20 4102 2020",
             email: "care@homeocare.in",
-            address: "Pune Central, Maharashtra, India",
+            address: "Navgaon is a village located in the Paithan Sub-District of Chhatrapati Sambhajinagar",
             city: "Pune",
             state: "Maharashtra",
           },
@@ -113,7 +113,7 @@ export async function getClinicSettings() {
     email: clinic.email || "",
     logoUrl: clinic.logoUrl || "",
     language: clinic.language,
-    branchName: clinic.branches[0]?.name || "Pune Central",
+    branchName: clinic.branches[0]?.name || "Navgaon Clinic",
     branchCity: clinic.branches[0]?.city || "Pune",
     branchState: clinic.branches[0]?.state || "Maharashtra",
   };

@@ -36,7 +36,7 @@ export default function WhatsAppPage() {
       <PageHeader title="Patient communication" description="Manage approved templates, transactional updates, and fallback SMS delivery." action={<button className="button button-whatsapp" onClick={() => notify("New WhatsApp campaign created.")}><MessageCircleMore size={17} /> New campaign</button>} />
       <div className="whatsapp-status">
         <span className="whatsapp-logo"><MessageCircleMore size={23} /></span>
-        <div><span className="kicker">WHATSAPP BUSINESS API</span><h3>HomeoCare Pune Central</h3><p>Connected · Last message delivered 1 minute ago</p></div>
+        <div><span className="kicker">WHATSAPP BUSINESS API</span><h3>HomeoCare Navgaon</h3><p>Connected · Last message delivered 1 minute ago</p></div>
         <span className="connected-pill"><i />Connected</span>
         <button className="button button-secondary">Manage connection</button>
       </div>

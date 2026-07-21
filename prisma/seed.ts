@@ -23,18 +23,18 @@ async function main() {
 
   // 2. Branch
   const branch = await prisma.branch.upsert({
-    where: { clinicId_code: { clinicId: clinic.id, code: "PUNE-CENTRAL" } },
+    where: { clinicId_code: { clinicId: clinic.id, code: "NAVGAON" } },
     update: {},
     create: {
       clinicId: clinic.id,
-      name: "Pune Central Clinic",
-      code: "PUNE-CENTRAL",
+      name: "Navgaon Clinic",
+      code: "NAVGAON",
       phone: "+91 20 4102 2020",
-      email: "pune@homeocare.in",
-      address: "FC Road, Shivajinagar",
-      city: "Pune",
+      email: "navgaon@homeocare.in",
+      address: "Navgaon is a village located in the Paithan Sub-District of Chhatrapati Sambhajinagar",
+      city: "Chhatrapati Sambhajinagar",
       state: "Maharashtra",
-      postalCode: "411005",
+      postalCode: "431107",
     },
   });
   console.log(`  ✓ Branch: ${branch.name}`);

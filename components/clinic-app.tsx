@@ -414,7 +414,7 @@ function Sidebar({
 
         <button className="branch-switcher">
           <span className="branch-icon"><Building2 size={18} /></span>
-          <span><small>Current branch</small><strong>Pune Central Clinic</strong></span>
+          <span><small>Current branch</small><strong>Navgaon Clinic</strong></span>
           <ChevronDown size={15} />
         </button>
 
@@ -988,7 +988,7 @@ function PrescriptionsPage({ onNotify }: { onNotify: (message: string) => void }
           </div>
           <article className="prescription-paper">
             <header>
-              <div className="brand-lockup"><span className="brand-mark"><HeartPulse size={22} /></span><div><strong>HomeoCare Pro</strong><small>Pune Central Clinic</small></div></div>
+              <div className="brand-lockup"><span className="brand-mark"><HeartPulse size={22} /></span><div><strong>HomeoCare Pro</strong><small>Navgaon Clinic</small></div></div>
               <div><strong>Dr. Madhukar Takpire, BHMS, MD</strong><span>Reg. MH-24518 · +91 20 4102 2020</span></div>
             </header>
             <div className="rx-patient"><div><span>PATIENT</span><strong>Elena Rodriguez</strong><small>34 years · Female · PAT-2026-00892</small></div><div><span>DATE</span><strong>12 June 2026</strong><small>Diagnosis: Chronic Migraine</small></div></div>
@@ -1172,7 +1172,7 @@ function WhatsAppPage({ onNotify }: { onNotify: (message: string) => void }) {
   return (
     <div className="page-stack">
       <PageHeader title="Patient communication" description="Manage approved templates, transactional updates, and fallback SMS delivery." action={<button className="button button-whatsapp" onClick={() => onNotify("New WhatsApp campaign created.")}><MessageCircleMore size={17} /> New campaign</button>} />
-      <div className="whatsapp-status"><span className="whatsapp-logo"><MessageCircleMore size={23} /></span><div><span className="kicker">WHATSAPP BUSINESS API</span><h3>HomeoCare Pune Central</h3><p>Connected · Last message delivered 1 minute ago</p></div><span className="connected-pill"><i /> Connected</span><button className="button button-secondary">Manage connection</button></div>
+      <div className="whatsapp-status"><span className="whatsapp-logo"><MessageCircleMore size={23} /></span><div><span className="kicker">WHATSAPP BUSINESS API</span><h3>HomeoCare Navgaon</h3><p>Connected · Last message delivered 1 minute ago</p></div><span className="connected-pill"><i /> Connected</span><button className="button button-secondary">Manage connection</button></div>
       <div className="metric-grid metric-grid-4">
         <MetricCard icon={Send} label="Sent this month" value="4,821" note="98.4% delivered" tone="green" />
         <MetricCard icon={MessageCircleMore} label="Read rate" value="91.6%" note="+3.2% vs last month" tone="blue" />
@@ -1205,7 +1205,7 @@ function StaffPage({ onNotify }: { onNotify: (message: string) => void }) {
         <MetricCard icon={Activity} label="Active sessions" value="11" note="No unusual activity" tone="amber" />
       </div>
       <Panel>
-        <div className="table-toolbar"><div className="search-field"><Search size={17} /><input placeholder="Search team member" /></div><select><option>All roles</option><option>Doctor</option><option>Receptionist</option><option>Clinic Admin</option></select><select><option>All branches</option><option>Pune Central</option><option>Aundh Branch</option></select></div>
+        <div className="table-toolbar"><div className="search-field"><Search size={17} /><input placeholder="Search team member" /></div><select><option>All roles</option><option>Doctor</option><option>Receptionist</option><option>Clinic Admin</option></select><select><option>All branches</option><option>Navgaon</option><option>Aundh Branch</option></select></div>
         <div className="staff-grid">{staff.map((member) => <article className="staff-card" key={member.name}><header><span className="avatar avatar-large">{member.initials}</span><button className="icon-button"><MoreHorizontal size={17} /></button></header><h3>{member.name}</h3><p>{member.specialty}</p><span className="role-pill">{member.role}</span><footer><span className={`presence ${member.status === "Offline" ? "offline" : ""}`}><i />{member.status}</span><button className="text-button">View access <ChevronRight size={14} /></button></footer></article>)}</div>
       </Panel>
     </div>
@@ -1233,7 +1233,7 @@ function SettingsPage({
       <div className="page-stack">
         <Panel>
           <div className="settings-heading"><div><span className="panel-kicker">ORGANIZATION</span><h3>Clinic information</h3><p>Information displayed on prescriptions, invoices, and patient communication.</p></div><button className="button button-secondary"><Pencil size={16} /> Edit</button></div>
-          <div className="clinic-profile-block"><span className="clinic-logo"><HeartPulse size={30} /></span><div><h3>HomeoCare Pro Clinic</h3><p>Pune Central · Maharashtra, India</p><button className="text-button">Change clinic logo</button></div></div>
+          <div className="clinic-profile-block"><span className="clinic-logo"><HeartPulse size={30} /></span><div><h3>HomeoCare Pro Clinic</h3><p>Navgaon is a village located in the Paithan Sub-District of Chhatrapati Sambhajinagar</p><button className="text-button">Change clinic logo</button></div></div>
           <div className="settings-data-grid"><span><small>Registration number</small><strong>MH-HOM-2024-1842</strong></span><span><small>GSTIN</small><strong>27AABCH1842F1Z8</strong></span><span><small>Clinic phone</small><strong>+91 20 4102 2020</strong></span><span><small>Support email</small><strong>care@homeocare.in</strong></span></div>
         </Panel>
         <Panel>

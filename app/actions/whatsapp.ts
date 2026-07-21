@@ -4,7 +4,7 @@ import { sendWhatsAppMessage, type WhatsAppTemplateName } from "@/lib/whatsapp/s
 
 export async function sendTestMessage(templateTitle: string) {
   let template: WhatsAppTemplateName = "appointment_confirmation";
-  let parameters = ["Elena Rodriguez", "15 Jun 2026 at 10:30 AM", "Pune Central Clinic"];
+  let parameters = ["Elena Rodriguez", "15 Jun 2026 at 10:30 AM", "Navgaon Clinic"];
 
   if (templateTitle.toLowerCase().includes("reminder") || templateTitle.toLowerCase().includes("follow-up")) {
     template = "appointment_reminder";
