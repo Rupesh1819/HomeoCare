@@ -41,7 +41,7 @@ export async function getAdminProfile() {
     }
   }
 
-  const isOwner = dbUser?.email === "doctor@homeocare.in";
+  const isOwner = dbUser?.email === "doctor@bhagavaticlinic.in";
 
   return {
     id: dbUser?.id || "",
@@ -82,11 +82,11 @@ export async function getClinicSettings() {
   if (!clinic) {
     clinic = await prisma.clinic.create({
       data: {
-        name: "HomeoCare Pro Clinic",
+        name: "Bhagwati Clinic",
         registrationNumber: "MH-HOM-2024-1842",
         gstin: "27AABCH1842F1Z8",
         phone: "+91 20 4102 2020",
-        email: "care@homeocare.in",
+        email: "care@bhagavaticlinic.in",
         timezone: "Asia/Kolkata",
         language: "en",
         branches: {
@@ -94,7 +94,7 @@ export async function getClinicSettings() {
             name: "Navgaon Clinic",
             code: "PUNE-HQ",
             phone: "+91 20 4102 2020",
-            email: "care@homeocare.in",
+            email: "care@bhagavaticlinic.in",
             address: "Navgaon is a village located in the Paithan Sub-District of Chhatrapati Sambhajinagar",
             city: "Pune",
             state: "Maharashtra",

@@ -4,7 +4,7 @@ import "./globals.css";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "HomeoCare Pro Enterprise",
+  title: "Bhagwati Clinic",
   description:
     "Enterprise homeopathic clinic management platform — consultations, prescriptions, billing, and follow-ups in one secure workspace.",
 };

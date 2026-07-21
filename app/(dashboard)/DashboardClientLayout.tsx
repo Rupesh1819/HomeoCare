@@ -69,7 +69,7 @@ export default function DashboardClientLayout({
     return () => window.clearTimeout(timeout);
   }, [toast, clearToast]);
 
-  const meta = pageMeta[pathname] || { title: "HomeoCare Pro", eyebrow: "" };
+  const meta = pageMeta[pathname] || { title: "Bhagwati Clinic", eyebrow: "" };
 
   return (
     <div className="app-shell">

@@ -337,7 +337,7 @@ export function SettingsClient({ initialSettings, initialProfile }: { initialSet
             <div>
               <span className="panel-kicker">PERSONALIZATION</span>
               <h3>Language &amp; appearance</h3>
-              <p>Choose how HomeoCare Pro appears for your account.</p>
+              <p>Choose how Bhagwati Clinic appears for your account.</p>
             </div>
           </div>
           <div className="setting-row">
