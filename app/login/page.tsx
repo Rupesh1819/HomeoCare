@@ -109,7 +109,7 @@ export default function LoginPage() {
               id="email"
               name="email"
               type="email"
-              placeholder="doctor@bhagavaticlinic.in"
+              placeholder="Enter email"
               required
             />
           </div>
