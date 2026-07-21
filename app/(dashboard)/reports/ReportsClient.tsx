@@ -57,7 +57,7 @@ export function ReportsClient({
     formData.append("file", file);
     formData.append("patientId", selectedPatientId);
     formData.append("category", file.type.includes("pdf") ? "Blood Test" : "Imaging");
-    formData.append("uploadedBy", "Dr. Maya Smith");
+    formData.append("uploadedBy", "Dr. Madhukar Takpire");
 
     try {
       const res = await uploadReport(formData);

@@ -8,7 +8,7 @@ export async function uploadReport(formData: FormData) {
   const file = formData.get("file") as File;
   const patientId = formData.get("patientId") as string;
   const category = (formData.get("category") as string) || "Other";
-  const uploadedBy = (formData.get("uploadedBy") as string) || "Dr. Maya Smith";
+  const uploadedBy = (formData.get("uploadedBy") as string) || "Dr. Madhukar Takpire";
 
   if (!file) {
     return { success: false, error: "No file provided" };

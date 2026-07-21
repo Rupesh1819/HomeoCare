@@ -187,9 +187,9 @@ export async function getAnalyticsData() {
   const finalDoctorPerformanceOrDemo = finalDoctorPerformance.length
     ? finalDoctorPerformance
     : [
-        { name: "Dr. Maya Smith", score: "96%", cases: "428 cases" },
-        { name: "Dr. Robert Chen", score: "92%", cases: "316 cases" },
-        { name: "Dr. Anjali Rao", score: "89%", cases: "284 cases" },
+        { name: "Dr. Madhukar Takpire", score: "96%", cases: "428 cases" },
+        { name: "Dr. Madhukar Takpire", score: "92%", cases: "316 cases" },
+        { name: "Dr. Madhukar Takpire", score: "89%", cases: "284 cases" },
       ];
 
   // 8. Status breakdown of appointments

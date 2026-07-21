@@ -61,7 +61,7 @@ export function InviteStaffDrawer({ isOpen, onClose, onSuccess }: InviteStaffDra
               <label>First Name</label>
               <div className="input-with-icon">
                 <User size={16} />
-                <input type="text" name="firstName" required placeholder="Maya" />
+                <input type="text" name="firstName" required placeholder="Madhukar" />
               </div>
             </div>
             
@@ -77,7 +77,7 @@ export function InviteStaffDrawer({ isOpen, onClose, onSuccess }: InviteStaffDra
               <label>Email Address</label>
               <div className="input-with-icon">
                 <Mail size={16} />
-                <input type="email" name="email" required placeholder="maya.smith@clinic.com" />
+                <input type="email" name="email" required placeholder="madhukar.takpire@clinic.com" />
               </div>
               <p className="field-hint">They will use this email to log in.</p>
             </div>

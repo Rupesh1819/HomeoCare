@@ -123,7 +123,7 @@ export const appointments: Appointment[] = [
   {
     id: "APT-1042",
     patient: "Arjun Malhotra",
-    doctor: "Dr. Maya Smith",
+    doctor: "Dr. Madhukar Takpire",
     time: "10:30 AM",
     mode: "Clinic",
     status: "Confirmed",
@@ -132,7 +132,7 @@ export const appointments: Appointment[] = [
   {
     id: "APT-1043",
     patient: "Priya Sharma",
-    doctor: "Dr. Robert Chen",
+    doctor: "Dr. Madhukar Takpire",
     time: "11:15 AM",
     mode: "Video",
     status: "Waiting",
@@ -141,7 +141,7 @@ export const appointments: Appointment[] = [
   {
     id: "APT-1044",
     patient: "Marcus Thorne",
-    doctor: "Dr. Maya Smith",
+    doctor: "Dr. Madhukar Takpire",
     time: "02:00 PM",
     mode: "Clinic",
     status: "Reschedule",
@@ -150,7 +150,7 @@ export const appointments: Appointment[] = [
   {
     id: "APT-1045",
     patient: "Lena Volkova",
-    doctor: "Dr. Maya Smith",
+    doctor: "Dr. Madhukar Takpire",
     time: "04:30 PM",
     mode: "Video",
     status: "Confirmed",

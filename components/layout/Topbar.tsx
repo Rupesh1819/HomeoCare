@@ -37,8 +37,8 @@ export function Topbar({ title, eyebrow }: { title: string; eyebrow: string }) {
     }).catch(console.error);
   }, []);
 
-  const fullName = profile ? `${profile.firstName} ${profile.lastName}` : "Dr. Maya Smith";
-  const initials = profile ? `${profile.firstName[0] || ""}${profile.lastName[0] || ""}`.toUpperCase() : "MS";
+  const fullName = profile ? `${profile.firstName} ${profile.lastName}` : "Dr. Madhukar Takpire";
+  const initials = profile ? `${profile.firstName[0] || ""}${profile.lastName[0] || ""}`.toUpperCase() : "MT";
   const roleName = profile ? (profile.role === "DOCTOR" ? "Doctor" : profile.role === "CLINIC_ADMIN" ? "Clinic Admin" : profile.role) : "Clinic Admin";
   const displayName = profile?.role === "DOCTOR" ? `Dr. ${fullName}` : fullName;
 

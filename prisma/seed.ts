@@ -46,8 +46,8 @@ async function main() {
     create: {
       clinicId: clinic.id,
       role: "DOCTOR",
-      firstName: "Maya",
-      lastName: "Smith",
+      firstName: "Madhukar",
+      lastName: "Takpire",
       email: "doctor@homeocare.in",
       mobile: "+91 98201 00001",
     },
@@ -105,7 +105,7 @@ async function main() {
     },
   });
 
-  console.log(`  ✓ Users: Dr. Maya Smith, Anjali Deshmukh, Rahul Patil, Sanjay Kulkarni (Lab), Neha Joshi (Pharma)`);
+  console.log(`  ✓ Users: Dr. Madhukar Takpire, Anjali Deshmukh, Rahul Patil, Sanjay Kulkarni (Lab), Neha Joshi (Pharma)`);
 
   // 4. Doctor profile
   const doctor = await prisma.doctor.upsert({

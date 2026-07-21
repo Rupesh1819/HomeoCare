@@ -72,10 +72,10 @@ export default function LoginPage() {
           </div>
         </div>
         <div className="login-quote">
-          <div className="doctor-avatar">MS</div>
+          <div className="doctor-avatar">MT</div>
           <div>
             <p>&ldquo;Every detail is exactly where the care team needs it.&rdquo;</p>
-            <span>Dr. Maya Smith, Clinical Director</span>
+            <span>Dr. Madhukar Takpire, Clinical Director</span>
           </div>
         </div>
       </section>

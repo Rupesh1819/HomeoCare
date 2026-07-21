@@ -10,7 +10,7 @@ export function Timeline() {
         <div>
           <strong>Prescription generated</strong>
           <p>Natrum Muriaticum 200C · 4 pills daily</p>
-          <small>12 Jun 2026 · Dr. Maya Smith</small>
+          <small>12 Jun 2026 · Dr. Madhukar Takpire</small>
         </div>
       </div>
       <div>
@@ -20,7 +20,7 @@ export function Timeline() {
         <div>
           <strong>Treatment record added</strong>
           <p>Improvement noted in migraine frequency.</p>
-          <small>12 Jun 2026 · Dr. Maya Smith</small>
+          <small>12 Jun 2026 · Dr. Madhukar Takpire</small>
         </div>
       </div>
       <div>
