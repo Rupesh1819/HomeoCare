@@ -51,7 +51,7 @@ export default function LoginPage() {
             <img src="/logo.png" alt="Logo" style={{ width: 32, height: 32, objectFit: 'contain' }} />
           </span>
           <div>
-            <strong>HomeoCare Pro</strong>
+            <strong>Bhagwati Clinic</strong>
             <small>Enterprise</small>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function LoginPage() {
           <span className="brand-mark" style={{ background: 'transparent', padding: 0, boxShadow: 'none' }}>
             <img src="/logo.png" alt="Logo" style={{ width: 28, height: 28, objectFit: 'contain' }} />
           </span>
-          <strong>HomeoCare Pro</strong>
+          <strong>Bhagwati Clinic</strong>
         </div>
         <form className="login-card" onSubmit={handleSubmit}>
           <span className="kicker">SECURE CLINIC ACCESS</span>
@@ -109,7 +109,7 @@ export default function LoginPage() {
               id="email"
               name="email"
               type="email"
-              defaultValue="doctor@homeocare.in"
+              placeholder="doctor@bhagavaticlinic.in"
               required
             />
           </div>
@@ -123,7 +123,7 @@ export default function LoginPage() {
               id="password"
               name="password"
               type={showPassword ? "text" : "password"}
-              defaultValue="homeocare"
+              placeholder="Enter your password"
               required
             />
             <button
@@ -144,14 +144,14 @@ export default function LoginPage() {
           </div>
 
           <button className="button button-primary button-full" type="submit" disabled={isPending}>
-            {isPending ? "Securing session..." : "Login to HomeoCare"}
+            {isPending ? "Securing session..." : "Login to Bhagwati Clinic"}
             {!isPending && <ChevronRight size={17} />}
           </button>
 
           <div className="login-support">
             <HelpCircle size={16} />
             Technical difficulty?{" "}
-            <a href="mailto:support@homeocare.in">Contact IT support</a>
+            <a href="mailto:support@bhagavaticlinic.in">Contact IT support</a>
           </div>
           <div className="security-note">
             <ShieldCheck size={16} /> Encrypted healthcare workspace
