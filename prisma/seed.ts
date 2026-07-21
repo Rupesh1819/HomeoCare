@@ -41,14 +41,14 @@ async function main() {
 
   // 3. Users
   const doctorUser = await prisma.user.upsert({
-    where: { email: "doctor@homeocare.in" },
+    where: { email: "doctor@bhagavaticlinic.in" },
     update: {},
     create: {
       clinicId: clinic.id,
       role: "DOCTOR",
       firstName: "Madhukar",
       lastName: "Takpire",
-      email: "doctor@homeocare.in",
+      email: "doctor@bhagavaticlinic.in",
       mobile: "+91 98201 00001",
     },
   });

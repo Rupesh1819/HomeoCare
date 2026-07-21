@@ -12,7 +12,7 @@ export async function getAdminProfile() {
   
   if (!user) {
     // Fallback for when there's no auth, just grab the doctor/owner
-    const owner = await prisma.user.findFirst({ where: { email: "doctor@homeocare.in" } });
+    const owner = await prisma.user.findFirst({ where: { email: "doctor@bhagavaticlinic.in" } });
     return {
       id: owner?.id || "",
       firstName: owner?.firstName || "",
