@@ -11,13 +11,14 @@ export async function getAdminProfile() {
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
-    // Fallback for when there's no auth, just grab the first admin
-    const firstAdmin = await prisma.user.findFirst({ where: { role: "CLINIC_ADMIN" } });
+    // Fallback for when there's no auth, just grab the doctor/owner
+    const owner = await prisma.user.findFirst({ where: { email: "doctor@homeocare.in" } });
     return {
-      id: firstAdmin?.id || "",
-      firstName: firstAdmin?.firstName || "",
-      lastName: firstAdmin?.lastName || "",
-      mobile: firstAdmin?.mobile || "",
+      id: owner?.id || "",
+      firstName: owner?.firstName || "",
+      lastName: owner?.lastName || "",
+      mobile: owner?.mobile || "",
+      role: owner?.role || "SUPER_ADMIN", // Ensure owner has max privileges
     };
   }
 
@@ -40,12 +41,14 @@ export async function getAdminProfile() {
     }
   }
 
+  const isOwner = dbUser?.email === "doctor@homeocare.in";
+
   return {
     id: dbUser?.id || "",
     firstName: dbUser?.firstName || "",
     lastName: dbUser?.lastName || "",
     mobile: dbUser?.mobile || "",
-    role: dbUser?.role || "CLINIC_ADMIN",
+    role: isOwner ? "SUPER_ADMIN" : (dbUser?.role || "CLINIC_ADMIN"),
   };
 }
 

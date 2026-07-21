@@ -321,7 +321,7 @@ export function AddPatientDrawer() {
         <footer className="drawer-footer">
           <button
             className="button button-secondary"
-            onClick={step === 1 ? onClose : () => setStep((c) => c - 1)}
+            onClick={step === 1 ? () => setAddingPatient(false) : () => setStep((c) => c - 1)}
           >
             {step === 1 ? "Cancel" : "Back"}
           </button>

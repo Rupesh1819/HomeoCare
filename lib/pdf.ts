@@ -23,6 +23,7 @@ type PrescriptionData = {
   items: { medicine: string; potency: string; dosage: string }[];
   instructions: string;
   followUpDate: string;
+  doctorDegrees?: string[];
 };
 
 type InvoiceData = {
@@ -53,8 +54,9 @@ export function downloadPrescriptionPDF(data: PrescriptionData) {
           },
           {
             stack: [
-              { text: data.doctorName, style: "doctorName", alignment: "right" },
-              { text: `Reg. ${data.doctorReg} · ${data.clinicPhone}`, style: "doctorInfo", alignment: "right" },
+              { text: data.doctorName, style: "doctorName", alignment: "right", margin: [0, 0, 0, 2] },
+              ...(data.doctorDegrees?.map(degree => ({ text: degree, style: "doctorInfo", alignment: "right" })) || []),
+              { text: `Reg No. ${data.doctorReg} · ${data.clinicPhone}`, style: "doctorInfo", alignment: "right", margin: [0, 2, 0, 0] },
             ],
           },
         ],

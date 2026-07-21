@@ -259,7 +259,7 @@ export function SettingsClient({ initialSettings, initialProfile }: { initialSet
               {logoUrl ? (
                 <img src={logoUrl} alt="Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               ) : (
-                <HeartPulse size={30} />
+                <img src="/logo.png" alt="Logo" style={{ width: 40, height: 40, objectFit: 'contain' }} />
               )}
             </span>
             <div>

@@ -21,8 +21,8 @@ const PERMISSIONS: Record<string, { label: string; allowed: boolean }[]> = {
     { label: "View all patient records", allowed: true },
     { label: "Add clinical notes and diagnoses", allowed: true },
     { label: "Prescribe medication", allowed: true },
-    { label: "View financial data", allowed: false },
-    { label: "Manage clinic settings", allowed: false },
+    { label: "View financial data", allowed: true },
+    { label: "Manage clinic settings", allowed: true },
   ],
   RECEPTIONIST: [
     { label: "Schedule appointments", allowed: true },

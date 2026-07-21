@@ -989,7 +989,13 @@ function PrescriptionsPage({ onNotify }: { onNotify: (message: string) => void }
           <article className="prescription-paper">
             <header>
               <div className="brand-lockup"><span className="brand-mark"><HeartPulse size={22} /></span><div><strong>HomeoCare Pro</strong><small>Navgaon Clinic</small></div></div>
-              <div><strong>Dr. Madhukar Takpire, BHMS, MD</strong><span>Reg. MH-24518 · +91 20 4102 2020</span></div>
+              <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <strong>Dr. Madhukar Takpire</strong>
+                <small style={{ fontSize: '11px', color: 'var(--muted)' }}>M.D. (Home), C.C.M.P.</small>
+                <small style={{ fontSize: '11px', color: 'var(--muted)' }}>शा. वै. महा. ओ. वाद. (घाटी)</small>
+                <small style={{ fontSize: '11px', color: 'var(--muted)' }}>जनरल फिजिशियन अँड सर्जन</small>
+                <span style={{ marginTop: '2px' }}>Reg No. 25705 · +91 9404981492</span>
+              </div>
             </header>
             <div className="rx-patient"><div><span>PATIENT</span><strong>Elena Rodriguez</strong><small>34 years · Female · PAT-2026-00892</small></div><div><span>DATE</span><strong>12 June 2026</strong><small>Diagnosis: Chronic Migraine</small></div></div>
             <div className="rx-symbol">Rx</div>

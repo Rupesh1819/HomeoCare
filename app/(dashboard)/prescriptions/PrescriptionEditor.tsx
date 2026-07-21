@@ -265,9 +265,14 @@ export function PrescriptionEditor({ patients }: { patients: Patient[] }) {
                 downloadPrescriptionPDF({
                   clinicName: "Bhagavati Clinic",
                   branchName: "Navgaon Clinic",
-                  doctorName: "Dr. Madhukar Takpire, BHMS, MD",
-                  doctorReg: "MH-24518",
-                  clinicPhone: "+91 20 4102 2020",
+                  doctorName: "Dr. Madhukar Takpire",
+                  doctorDegrees: [
+                    "M.D. (Home), C.C.M.P.",
+                    "शा. वै. महा. ओ. वाद. (घाटी)",
+                    "जनरल फिजिशियन अँड सर्जन"
+                  ],
+                  doctorReg: "25705",
+                  clinicPhone: "+91 9404981492",
                   patientName: selectedPatient.name,
                   patientAge: selectedPatient.age,
                   patientGender: selectedPatient.gender,
@@ -293,17 +298,20 @@ export function PrescriptionEditor({ patients }: { patients: Patient[] }) {
           <article className="prescription-paper">
             <header>
               <div className="brand-lockup">
-                <span className="brand-mark">
-                  <HeartPulse size={22} />
+                <span className="brand-mark" style={{ background: 'transparent', padding: 0 }}>
+                  <img src="/logo.png" alt="Logo" style={{ width: 28, height: 28, objectFit: 'contain' }} />
                 </span>
                 <div>
                   <strong>Bhagavati Clinic</strong>
                   <small>Navgaon Clinic</small>
                 </div>
               </div>
-              <div>
-                <strong>Dr. Madhukar Takpire, BHMS, MD</strong>
-                <span>Reg. MH-24518 · +91 20 4102 2020</span>
+              <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                <strong>Dr. Madhukar Takpire</strong>
+                <small style={{ fontSize: '11px', color: 'var(--muted)' }}>M.D. (Home), C.C.M.P.</small>
+                <small style={{ fontSize: '11px', color: 'var(--muted)' }}>शा. वै. महा. ओ. वाद. (घाटी)</small>
+                <small style={{ fontSize: '11px', color: 'var(--muted)' }}>जनरल फिजिशियन अँड सर्जन</small>
+                <span style={{ marginTop: '2px' }}>Reg No. 25705 · +91 9404981492</span>
               </div>
             </header>
             <div className="rx-patient">

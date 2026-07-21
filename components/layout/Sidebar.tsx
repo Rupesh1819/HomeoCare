@@ -111,10 +111,10 @@ export function Sidebar({
       <aside className={`sidebar ${open ? "sidebar-open" : ""}`}>
         <div className="sidebar-brand">
           {settings?.logoUrl ? (
-            <img src={settings.logoUrl} alt="Clinic Logo" className="brand-logo" style={{ width: 32, height: 32, borderRadius: 4, objectFit: 'cover' }} />
+            <img src={settings.logoUrl} alt="Clinic Logo" className="brand-logo" style={{ width: 32, height: 32, borderRadius: 4, objectFit: 'contain' }} />
           ) : (
-            <span className="brand-mark">
-              <HeartPulse size={22} />
+            <span className="brand-mark" style={{ background: 'transparent', padding: 0 }}>
+              <img src="/logo.png" alt="Logo" style={{ width: 32, height: 32, objectFit: 'contain' }} />
             </span>
           )}
           <div>

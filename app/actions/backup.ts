@@ -1,15 +1,15 @@
 "use server";
 
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { getAdminProfile } from "./settings";
-import { logAudit } from "./audit";
+import { logAudit } from "@/lib/audit";
 
 export async function generateDatabaseBackup() {
   try {
     // 1. Verify admin permissions
     const profile = await getAdminProfile();
-    if (!profile || profile.role !== "CLINIC_ADMIN") {
-      return { success: false, error: "Unauthorized. Only Clinic Admins can generate backups." };
+    if (!profile || (profile.role !== "CLINIC_ADMIN" && profile.role !== "SUPER_ADMIN")) {
+      return { success: false, error: "Unauthorized. Only Clinic Admins or Super Admins can generate backups." };
     }
 
     // 2. Fetch all critical data
@@ -25,7 +25,7 @@ export async function generateDatabaseBackup() {
       prisma.patient.findMany(),
       prisma.treatment.findMany(),
       prisma.appointment.findMany(),
-      prisma.inventory.findMany(),
+      prisma.inventoryItem.findMany(),
       prisma.invoice.findMany()
     ]);
 

@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { createNotification } from "./notifications";
 
 export async function getAppointments(date?: Date) {
   const targetDate = date || new Date();
@@ -97,6 +98,12 @@ export async function createAppointment(data: {
       reason: data.reason,
     },
   });
+
+  await createNotification(
+    "New Appointment",
+    `${patient.firstName} ${patient.lastName} has an appointment for ${scheduledDate.toLocaleDateString()} at ${data.time}.`,
+    "APPOINTMENT"
+  );
 
   revalidatePath("/appointments");
   revalidatePath("/");

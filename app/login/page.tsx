@@ -47,8 +47,8 @@ export default function LoginPage() {
     <div className="login-page">
       <section className="login-brand-panel">
         <div className="brand-lockup brand-lockup-light">
-          <span className="brand-mark">
-            <HeartPulse size={24} />
+          <span className="brand-mark" style={{ background: 'transparent', padding: 0 }}>
+            <img src="/logo.png" alt="Logo" style={{ width: 32, height: 32, objectFit: 'contain' }} />
           </span>
           <div>
             <strong>HomeoCare Pro</strong>
@@ -82,8 +82,8 @@ export default function LoginPage() {
 
       <section className="login-form-panel">
         <div className="mobile-login-brand">
-          <span className="brand-mark">
-            <HeartPulse size={22} />
+          <span className="brand-mark" style={{ background: 'transparent', padding: 0, boxShadow: 'none' }}>
+            <img src="/logo.png" alt="Logo" style={{ width: 28, height: 28, objectFit: 'contain' }} />
           </span>
           <strong>HomeoCare Pro</strong>
         </div>

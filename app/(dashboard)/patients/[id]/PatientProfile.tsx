@@ -108,11 +108,7 @@ export function PatientProfile({ patient }: { patient: PatientData }) {
 
   return (
     <div className="page-stack">
-      <EditPatientDrawer 
-        isOpen={editingPatient}
-        onClose={() => setEditingPatient(false)}
-        patient={patient}
-      />
+
       <AddTreatmentDrawer
         isOpen={addingTreatment}
         onClose={() => setAddingTreatment(false)}

@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { logAudit } from "@/lib/audit";
+import { createNotification } from "./notifications";
 
 export async function getPatients(query?: string, status?: string) {
   const where: any = { isArchived: false };
@@ -106,6 +107,12 @@ export async function createPatient(data: {
     name: `${data.firstName} ${data.lastName}`, 
     patientNumber: patient.patientNumber 
   });
+
+  await createNotification(
+    "New Patient Registered",
+    `${data.firstName} ${data.lastName} was registered.`,
+    "PATIENT"
+  );
 
   revalidatePath("/patients");
   revalidatePath("/");

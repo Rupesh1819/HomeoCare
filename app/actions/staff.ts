@@ -159,10 +159,11 @@ export async function inviteStaff(formData: FormData) {
   const firstName = formData.get("firstName") as string;
   const lastName = formData.get("lastName") as string;
   const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
   const role = formData.get("role") as any;
   const specialty = formData.get("specialty") as string;
 
-  if (!firstName || !lastName || !email || !role) {
+  if (!firstName || !lastName || !email || !role || !password) {
     return { success: false, error: "Missing required fields" };
   }
 
@@ -182,11 +183,10 @@ export async function inviteStaff(formData: FormData) {
     const supabase = await createAdminClient();
 
     // 1. Create User in Supabase Auth
-    // Use a default password. We can force them to reset it later, or they can just use this for the demo.
-    const defaultPassword = "homeocare123";
+    // Use the provided password. 
     const { data: authData, error: authError } = await supabase.auth.admin.createUser({
       email,
-      password: defaultPassword,
+      password: password,
       email_confirm: true,
       user_metadata: {
         first_name: firstName,
@@ -236,7 +236,7 @@ export async function inviteStaff(formData: FormData) {
     });
 
     revalidatePath("/staff");
-    return { success: true, message: "Staff member invited successfully! Password: " + defaultPassword };
+    return { success: true, message: "Staff member invited successfully! Password: " + password };
   } catch (error: any) {
     console.error("Staff invite error:", error);
     return { success: false, error: error.message || "An unexpected error occurred" };

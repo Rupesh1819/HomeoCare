@@ -429,3 +429,13 @@ model Backup {
 
   @@index([clinicId, startedAt])
 }
+
+model Alert {
+  id        String   @id @default(cuid())
+  title     String
+  message   String
+  type      String   // e.g. "APPOINTMENT", "PATIENT", "INVENTORY"
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

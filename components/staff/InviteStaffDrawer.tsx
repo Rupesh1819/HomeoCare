@@ -83,6 +83,15 @@ export function InviteStaffDrawer({ isOpen, onClose, onSuccess }: InviteStaffDra
             </div>
 
             <div className="form-group">
+              <label>Password</label>
+              <div className="input-with-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-key"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg>
+                <input type="password" name="password" required placeholder="Choose a secure password" minLength={6} />
+              </div>
+              <p className="field-hint">They will use this password to log in.</p>
+            </div>
+
+            <div className="form-group">
               <label>System Role</label>
               <select name="role" value={role} onChange={(e) => setRole(e.target.value)} required>
                 <option value="RECEPTIONIST">Receptionist</option>

@@ -114,8 +114,8 @@ async function main() {
     create: {
       userId: doctorUser.id,
       branchId: branch.id,
-      registrationNo: "MH-24518",
-      qualification: "BHMS, MD (Hom.)",
+      registrationNo: "25705",
+      qualification: "MD (Homoeopathy)",
       specialization: "Classical Homeopathy",
       consultationFee: 800,
     },
