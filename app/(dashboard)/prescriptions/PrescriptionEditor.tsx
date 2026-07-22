@@ -72,7 +72,7 @@ export function PrescriptionEditor({ patients }: { patients: Patient[] }) {
 
   useEffect(() => {
     getLabTests()
-      .then((tests) => setAvailableLabTests(tests.filter((t) => t.active)))
+      .then((tests: any[]) => setAvailableLabTests(tests.filter((t: any) => t.active)))
       .catch(console.error);
   }, []);
 
