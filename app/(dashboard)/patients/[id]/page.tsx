@@ -14,34 +14,36 @@ export default async function PatientProfilePage({
     notFound();
   }
 
+  const p: any = patient;
+
   // Serialize dates and Decimals for client component
   const serialized = {
-    id: patient.patientNumber,
-    dbId: patient.id,
-    name: `${patient.firstName} ${patient.lastName}`,
-    initials: `${patient.firstName[0]}${patient.lastName[0]}`.toUpperCase(),
-    age: patient.dateOfBirth
+    id: p.patientNumber,
+    dbId: p.id,
+    name: `${p.firstName} ${p.lastName}`,
+    initials: `${p.firstName[0]}${p.lastName[0]}`.toUpperCase(),
+    age: p.dateOfBirth
       ? Math.floor(
-          (Date.now() - patient.dateOfBirth.getTime()) / (365.25 * 86400000)
+          (Date.now() - p.dateOfBirth.getTime()) / (365.25 * 86400000)
         )
       : 0,
     gender:
-      patient.gender === "MALE"
+      p.gender === "MALE"
         ? "Male"
-        : patient.gender === "FEMALE"
+        : p.gender === "FEMALE"
           ? "Female"
           : "Other",
-    mobile: patient.mobile,
-    email: patient.email || "",
-    condition: patient.disease || patient.chiefComplaint || "No condition noted",
-    lastVisit: patient.updatedAt.toLocaleDateString("en-IN", {
+    mobile: p.mobile,
+    email: p.email || "",
+    condition: p.disease || p.chiefComplaint || "No condition noted",
+    lastVisit: p.updatedAt.toLocaleDateString("en-IN", {
       day: "2-digit",
       month: "short",
       year: "numeric",
     }),
     nextFollowUp:
-      patient.followUps?.[0]?.dueAt
-        ? patient.followUps[0].dueAt.toLocaleDateString("en-IN", {
+      p.followUps?.[0]?.dueAt
+        ? p.followUps[0].dueAt.toLocaleDateString("en-IN", {
             day: "2-digit",
             month: "short",
             year: "numeric",
@@ -56,15 +58,15 @@ export default async function PatientProfilePage({
         "#fee2e2",
         "#fef3c7",
         "#cffafe",
-      ][Math.abs(patient.firstName.charCodeAt(0)) % 6],
-    address: patient.address || "",
-    city: patient.city || "",
-    state: patient.state || "",
-    chiefComplaint: patient.chiefComplaint || "",
-    disease: patient.disease || "",
-    allergyHistory: patient.allergyHistory || "",
-    familyHistory: patient.familyHistory || "",
-    treatments: (patient.treatments || []).map((t) => ({
+      ][Math.abs(p.firstName.charCodeAt(0)) % 6],
+    address: p.address || "",
+    city: p.city || "",
+    state: p.state || "",
+    chiefComplaint: p.chiefComplaint || "",
+    disease: p.disease || "",
+    allergyHistory: p.allergyHistory || "",
+    familyHistory: p.familyHistory || "",
+    treatments: (p.treatments || []).map((t: any) => ({
       id: t.id,
       date: t.consultationDate.toLocaleDateString("en-IN", {
         day: "2-digit",
@@ -77,7 +79,7 @@ export default async function PatientProfilePage({
       potency: t.potency,
       dosage: t.dosage,
     })),
-    appointments: (patient.appointments || []).map((a) => ({
+    appointments: (p.appointments || []).map((a: any) => ({
       id: a.id,
       date: a.scheduledAt.toLocaleDateString("en-IN", {
         day: "2-digit",
@@ -94,7 +96,7 @@ export default async function PatientProfilePage({
         ? `${a.doctor.user.firstName} ${a.doctor.user.lastName}`
         : "Doctor",
     })),
-    followUps: (patient.followUps || []).map((f) => ({
+    followUps: (p.followUps || []).map((f: any) => ({
       id: f.id,
       dueAt: f.dueAt.toLocaleDateString("en-IN", {
         day: "2-digit",
@@ -104,7 +106,7 @@ export default async function PatientProfilePage({
       status: f.status,
       notes: f.notes || "",
     })),
-    medicalReports: (patient.reports || []).map((r: any) => ({
+    medicalReports: (p.reports || []).map((r: any) => ({
       id: r.id,
       title: r.title,
       category: r.category,
@@ -117,7 +119,7 @@ export default async function PatientProfilePage({
       url: null, // Fetched on demand
       storagePath: r.storagePath,
     })),
-    labOrders: (patient.labOrders || []).map((l: any) => ({
+    labOrders: (p.labOrders || []).map((l: any) => ({
       id: l.id,
       testName: l.labTest?.name || "Diagnostic Test",
       category: l.labTest?.category || "Lab",
@@ -140,12 +142,12 @@ export default async function PatientProfilePage({
           })
         : null,
     })),
-    latestVitals: patient.vitals?.[0] ? {
-      bp: patient.vitals[0].bp,
-      heartRate: patient.vitals[0].heartRate,
-      weight: patient.vitals[0].weight,
-      temperature: patient.vitals[0].temperature,
-      recordedAt: patient.vitals[0].recordedAt.toLocaleDateString("en-IN", {
+    latestVitals: p.vitals?.[0] ? {
+      bp: p.vitals[0].bp,
+      heartRate: p.vitals[0].heartRate,
+      weight: p.vitals[0].weight,
+      temperature: p.vitals[0].temperature,
+      recordedAt: p.vitals[0].recordedAt.toLocaleDateString("en-IN", {
         day: "2-digit",
         month: "short",
         year: "numeric",
