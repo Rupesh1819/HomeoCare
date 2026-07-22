@@ -117,6 +117,40 @@ export default async function PatientProfilePage({
       url: null, // Fetched on demand
       storagePath: r.storagePath,
     })),
+    labOrders: (patient.labOrders || []).map((l: any) => ({
+      id: l.id,
+      testName: l.labTest?.name || "Diagnostic Test",
+      category: l.labTest?.category || "Lab",
+      price: Number(l.labTest?.price || 0),
+      doctorName: l.doctor ? `Dr. ${l.doctor.firstName} ${l.doctor.lastName}` : "Doctor",
+      status: l.status,
+      notes: l.notes || "",
+      reportUrl: l.reportUrl || null,
+      reportStoragePath: l.reportStoragePath || null,
+      orderedAt: l.orderedAt.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+      completedAt: l.completedAt
+        ? l.completedAt.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : null,
+    })),
+    latestVitals: patient.vitals?.[0] ? {
+      bp: patient.vitals[0].bp,
+      heartRate: patient.vitals[0].heartRate,
+      weight: patient.vitals[0].weight,
+      temperature: patient.vitals[0].temperature,
+      recordedAt: patient.vitals[0].recordedAt.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+    } : null,
   };
 
   return <PatientProfile patient={serialized} />;

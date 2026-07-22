@@ -21,6 +21,8 @@ import {
   X,
   FileText,
   ShieldAlert,
+  FlaskConical,
+  FileSpreadsheet,
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -55,6 +57,8 @@ const navGroups: { label: string; items: NavItem[] }[] = [
     items: [
       { href: "/treatments", label: "Treatments", icon: Stethoscope },
       { href: "/prescriptions", label: "Prescriptions", icon: Pill },
+      { href: "/lab-dashboard", label: "Lab Dashboard", icon: FlaskConical },
+      { href: "/lab-master", label: "Lab Test Master", icon: FileSpreadsheet },
       { href: "/reports", label: "Medical Reports", icon: FileText },
     ],
   },
@@ -143,7 +147,7 @@ export function Sidebar({
           {navGroups.map((group) => {
             const filteredItems = group.items.filter((item) => {
               if (role === "LAB_TECHNICIAN") {
-                return item.href === "/" || item.href === "/reports";
+                return item.href === "/" || item.href === "/lab-dashboard" || item.href === "/reports" || item.href === "/patients";
               }
               if (role === "PHARMACIST") {
                 return item.href === "/" || item.href === "/prescriptions" || item.href === "/inventory";

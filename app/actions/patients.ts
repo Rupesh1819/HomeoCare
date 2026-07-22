@@ -57,6 +57,8 @@ export async function getPatientById(patientNumber: string) {
       invoices: { orderBy: { createdAt: "desc" }, take: 10, include: { payments: true } },
       followUps: { orderBy: { dueAt: "desc" }, take: 10 },
       reports: { orderBy: { createdAt: "desc" }, take: 20 },
+      vitals: { orderBy: { recordedAt: "desc" }, take: 1 },
+      labOrders: { orderBy: { orderedAt: "desc" }, take: 20, include: { labTest: true, doctor: true } },
     },
   });
   return patient;

@@ -19,6 +19,9 @@ export async function getInvoices() {
     dbId: inv.id,
     patient: `${inv.patient.firstName} ${inv.patient.lastName}`,
     date: inv.createdAt.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }),
+    consultationFee: Number(inv.consultationFee),
+    medicineCharges: Number(inv.medicineCharges),
+    labCharges: Number(inv.labCharges || 0),
     amount: `₹${Number(inv.total).toLocaleString("en-IN")}`,
     method: inv.payments.length > 0 ? inv.payments[0].method : "-",
     status: inv.status === "PAID" ? "Paid" : inv.status === "PENDING" ? "Pending" : "Overdue",
@@ -65,6 +68,7 @@ export async function createInvoice(data: {
   patientName: string;
   consultationFee: number;
   medicineCharges: number;
+  labCharges?: number;
 }) {
   const clinic = await prisma.clinic.findFirst();
   if (!clinic) throw new Error("No clinic found.");
@@ -83,6 +87,9 @@ export async function createInvoice(data: {
   const count = await prisma.invoice.count();
   const invoiceNumber = `INV-${new Date().getFullYear()}-${String(count + 1).padStart(4, "0")}`;
 
+  const labCharges = data.labCharges || 0;
+  const total = data.consultationFee + data.medicineCharges + labCharges;
+
   const invoice = await prisma.invoice.create({
     data: {
       clinicId: clinic.id,
@@ -91,7 +98,8 @@ export async function createInvoice(data: {
       invoiceNumber,
       consultationFee: data.consultationFee,
       medicineCharges: data.medicineCharges,
-      total: data.consultationFee + data.medicineCharges,
+      labCharges,
+      total,
       status: "PENDING",
     },
   });
@@ -99,7 +107,7 @@ export async function createInvoice(data: {
   await logAudit("INVOICE_GENERATED", "Invoice", invoice.id, { 
     invoiceNumber, 
     patientName: data.patientName,
-    amount: data.consultationFee + data.medicineCharges 
+    amount: total 
   });
 
   revalidatePath("/billing");

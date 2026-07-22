@@ -67,6 +67,13 @@ enum NotificationChannel {
   IN_APP
 }
 
+enum LabOrderStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
 model Clinic {
   id                 String      @id @default(cuid())
   name               String
@@ -84,6 +91,8 @@ model Clinic {
   patients           Patient[]
   invoices           Invoice[]
   inventory          InventoryItem[]
+  labTests           LabTest[]
+  labOrders          LabOrder[]
   auditLogs          AuditLog[]
   backups            Backup[]
 
@@ -133,6 +142,7 @@ model User {
   patientAccount    Patient?       @relation("PatientAccount")
   treatments        Treatment[]    @relation("TreatmentDoctor")
   prescriptions     Prescription[] @relation("PrescriptionDoctor")
+  doctorLabOrders   LabOrder[]     @relation("DoctorLabOrders")
   auditLogs         AuditLog[]
 
   @@index([clinicId, role, isActive])
@@ -192,6 +202,8 @@ model Patient {
   reports            MedicalReport[]
   followUps          FollowUp[]
   invoices           Invoice[]
+  vitals             Vitals[]
+  labOrders          LabOrder[]
 
   @@unique([clinicId, patientNumber])
   @@index([clinicId, lastName, firstName])
@@ -219,6 +231,7 @@ model Appointment {
   doctor      Doctor            @relation(fields: [doctorId], references: [id])
   treatment   Treatment?
   followUp    FollowUp?
+  labOrders   LabOrder[]
 
   @@unique([branchId, appointmentNumber])
   @@index([branchId, scheduledAt, status])
@@ -265,6 +278,7 @@ model Prescription {
   doctor         User               @relation("PrescriptionDoctor", fields: [doctorUserId], references: [id])
   treatment      Treatment?         @relation(fields: [treatmentId], references: [id])
   items          PrescriptionItem[]
+  labOrders      LabOrder[]
 
   @@index([patientId, createdAt])
 }
@@ -319,6 +333,7 @@ model Invoice {
   invoiceNumber  String        @unique
   consultationFee Decimal      @default(0) @db.Decimal(10, 2)
   medicineCharges Decimal      @default(0) @db.Decimal(10, 2)
+  labCharges      Decimal      @default(0) @db.Decimal(10, 2)
   additionalCharges Decimal    @default(0) @db.Decimal(10, 2)
   discount       Decimal       @default(0) @db.Decimal(10, 2)
   tax            Decimal       @default(0) @db.Decimal(10, 2)
@@ -438,4 +453,67 @@ model Alert {
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Vitals {
+  id          String   @id @default(cuid())
+  patientId   String
+  bp          String?
+  heartRate   Int?
+  weight      Float?
+  temperature Float?
+  recordedAt  DateTime @default(now())
+  recordedBy  String?
+  
+  patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([patientId, recordedAt])
+}
+
+model LabTest {
+  id          String     @id @default(cuid())
+  clinicId    String
+  name        String
+  category    String     @default("Blood Tests")
+  price       Decimal    @default(0) @db.Decimal(10, 2)
+  description String?
+  active      Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  clinic      Clinic     @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  labOrders   LabOrder[]
+
+  @@index([clinicId, category, active])
+  @@index([clinicId, name])
+}
+
+model LabOrder {
+  id                String         @id @default(cuid())
+  clinicId          String
+  patientId         String
+  appointmentId     String?
+  prescriptionId    String?
+  doctorId          String
+  labTestId         String
+  status            LabOrderStatus @default(PENDING)
+  notes             String?
+  reportUrl         String?
+  reportStoragePath String?
+  uploadedBy        String?
+  orderedAt         DateTime       @default(now())
+  completedAt       DateTime?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  clinic            Clinic         @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  patient           Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctor            User           @relation("DoctorLabOrders", fields: [doctorId], references: [id])
+  labTest           LabTest        @relation(fields: [labTestId], references: [id], onDelete: Cascade)
+  prescription      Prescription?  @relation(fields: [prescriptionId], references: [id], onDelete: SetNull)
+  appointment       Appointment?   @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+
+  @@index([clinicId, status, orderedAt])
+  @@index([patientId, orderedAt])
+  @@index([doctorId, orderedAt])
 }
