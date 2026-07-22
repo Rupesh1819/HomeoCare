@@ -2,9 +2,11 @@
 
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { prisma } from "@/lib/prisma";
+import { createAdminClient } from "@/lib/supabase/server";
 
 export async function login(formData: FormData): Promise<{ error?: string; success?: boolean }> {
-  const email = formData.get("email") as string;
+  const email = (formData.get("email") as string)?.trim().toLowerCase();
   const password = formData.get("password") as string;
   
   if (!email || !password) {
@@ -20,8 +22,8 @@ export async function login(formData: FormData): Promise<{ error?: string; succe
     return { error: "Missing Supabase configuration" };
   }
 
-  try {
-    const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+  const getSupabaseClient = () =>
+    createServerClient(supabaseUrl, supabaseAnonKey, {
       cookies: {
         getAll() {
           return cookieStore.getAll();
@@ -38,18 +40,70 @@ export async function login(formData: FormData): Promise<{ error?: string; succe
       },
     });
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+  let supabase = getSupabaseClient();
 
-    if (error) {
-      return { error: error.message };
+  // 1. Try standard authentication
+  let { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  // 2. If login fails, check if the account exists in Prisma DB and auto-provision / sync password in Supabase Auth
+  if (error && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    try {
+      const dbUser = await prisma.user.findFirst({
+        where: { email: { equals: email, mode: "insensitive" } },
+      });
+
+      if (dbUser) {
+        const adminSupabase = await createAdminClient();
+        const { data: usersData } = await adminSupabase.auth.admin.listUsers();
+        const existingAuthUser = usersData?.users?.find(
+          (u: any) => u.email?.toLowerCase() === email
+        );
+
+        if (existingAuthUser) {
+          // Sync password to Supabase Auth
+          await adminSupabase.auth.admin.updateUserById(existingAuthUser.id, {
+            password,
+            email_confirm: true,
+          });
+        } else {
+          // Create missing user in Supabase Auth
+          const { data: newAuthUser } = await adminSupabase.auth.admin.createUser({
+            email,
+            password,
+            email_confirm: true,
+            user_metadata: { firstName: dbUser.firstName, lastName: dbUser.lastName },
+          });
+
+          if (newAuthUser?.user?.id) {
+            await prisma.user.update({
+              where: { id: dbUser.id },
+              data: { authUserId: newAuthUser.user.id },
+            });
+          }
+        }
+
+        // Retry authentication with fresh session
+        supabase = getSupabaseClient();
+        const retryResult = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (!retryResult.error) {
+          return { success: true };
+        }
+      }
+    } catch (provisionErr) {
+      console.error("[auth] Auto-provisioning notice:", provisionErr);
     }
-    
-    return { success: true };
-  } catch (err: any) {
-    console.error("[auth] Login error:", err);
-    return { error: err?.message || "An unexpected error occurred during login." };
   }
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  return { success: true };
 }

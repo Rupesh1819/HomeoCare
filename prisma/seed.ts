@@ -40,6 +40,19 @@ async function main() {
   console.log(`  ✓ Branch: ${branch.name}`);
 
   // 3. Users
+  const superAdminUser = await prisma.user.upsert({
+    where: { email: "dr.takpire@bhagavaticlinic.com" },
+    update: {},
+    create: {
+      clinicId: clinic.id,
+      role: "SUPER_ADMIN",
+      firstName: "Madhukar",
+      lastName: "Takpire",
+      email: "dr.takpire@bhagavaticlinic.com",
+      mobile: "+91 98201 00000",
+    },
+  });
+
   const doctorUser = await prisma.user.upsert({
     where: { email: "doctor@bhagavaticlinic.in" },
     update: {},
@@ -53,59 +66,33 @@ async function main() {
     },
   });
 
-  const receptionistUser = await prisma.user.upsert({
-    where: { email: "reception@homeocare.in" },
-    update: {},
-    create: {
-      clinicId: clinic.id,
-      role: "RECEPTIONIST",
-      firstName: "Anjali",
-      lastName: "Deshmukh",
-      email: "reception@homeocare.in",
-      mobile: "+91 98201 00002",
-    },
-  });
-
-  const adminUser = await prisma.user.upsert({
-    where: { email: "admin@homeocare.in" },
-    update: {},
-    create: {
-      clinicId: clinic.id,
-      role: "CLINIC_ADMIN",
-      firstName: "Rahul",
-      lastName: "Patil",
-      email: "admin@homeocare.in",
-      mobile: "+91 98201 00003",
-    },
-  });
-
   const labTechUser = await prisma.user.upsert({
-    where: { email: "lab@homeocare.in" },
+    where: { email: "lab@bhagavaticlinic.in" },
     update: {},
     create: {
       clinicId: clinic.id,
       role: "LAB_TECHNICIAN",
       firstName: "Sanjay",
-      lastName: "Kulkarni",
-      email: "lab@homeocare.in",
+      lastName: "Kulkarni (Lab)",
+      email: "lab@bhagavaticlinic.in",
       mobile: "+91 98201 00004",
     },
   });
 
   const pharmacistUser = await prisma.user.upsert({
-    where: { email: "pharma@homeocare.in" },
+    where: { email: "pharma@bhagavaticlinic.in" },
     update: {},
     create: {
       clinicId: clinic.id,
       role: "PHARMACIST",
       firstName: "Neha",
-      lastName: "Joshi",
-      email: "pharma@homeocare.in",
+      lastName: "Joshi (Pharma)",
+      email: "pharma@bhagavaticlinic.in",
       mobile: "+91 98201 00005",
     },
   });
 
-  console.log(`  ✓ Users: Dr. Madhukar Takpire, Anjali Deshmukh, Rahul Patil, Sanjay Kulkarni (Lab), Neha Joshi (Pharma)`);
+  console.log(`  ✓ Users: Super Admin, Doctor, Lab Technician, Pharmacist`);
 
   // 4. Doctor profile
   const doctor = await prisma.doctor.upsert({
