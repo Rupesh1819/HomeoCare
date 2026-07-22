@@ -52,12 +52,6 @@ export async function getLabTests(category?: string) {
   const clinic = await prisma.clinic.findFirst();
   if (!clinic) return [];
 
-  // Auto seed if empty
-  const count = await prisma.labTest.count({ where: { clinicId: clinic.id } });
-  if (count === 0) {
-    await seedDefaultLabTests();
-  }
-
   const where: any = { clinicId: clinic.id };
   if (category && category !== "All") {
     where.category = category;
