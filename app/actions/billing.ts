@@ -29,7 +29,7 @@ export async function getInvoices(query?: string) {
     take: 100,
   });
 
-  return invoices.map((inv) => ({
+  return invoices.map((inv: any) => ({
     id: inv.invoiceNumber,
     dbId: inv.id,
     patientId: inv.patient.id,
