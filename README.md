@@ -1,50 +1,61 @@
-# HomeoCare Pro Enterprise
+# Bhagwati Clinic — Management System
 
-Responsive clinic management workspace built from the supplied HomeoCare Pro specification and Google Stitch prototype.
+Enterprise clinic management platform for **Bhagwati Clinic** — consultations, prescriptions, lab management, billing, and follow-ups in one secure workspace.
 
-## Included
+## Features
 
-- Secure login experience and role-aware application shell
-- Practice dashboard with patient, appointment, follow-up, and revenue analytics
-- Searchable patient registry, four-step registration, and longitudinal profile
-- Appointment calendar with live status actions
-- Treatment history and prescription generator with print layout
-- Medical report center, billing, inventory, analytics, follow-ups, WhatsApp templates, staff, settings, dark mode, and language preferences
-- PostgreSQL/Prisma enterprise data model with indexes and audit entities
-- Local PostgreSQL Docker configuration and Supabase/WhatsApp environment placeholders
+- 🔐 Secure role-based login (Super Admin, Doctor, Lab Technician, Pharmacist)
+- 📋 Patient registration, profiles, and medical history
+- 📅 Appointment scheduling with live status tracking
+- 💊 Prescription generator with PDF print/download
+- 🧪 Lab management — test master, orders, results, and reports
+- 💰 Billing — invoice creation, payment recording, and receipt printing
+- 📦 Pharmacy inventory with batch tracking and expiry alerts
+- 📊 Practice analytics and revenue dashboards
+- 📱 WhatsApp integration templates
+- 🛡️ Audit logging for compliance
 
-The UI runs in demo mode with realistic local data. Supabase Auth, Storage, server actions, WhatsApp/SMS provider calls, and production backup jobs require project credentials before they can be connected.
+## Tech Stack
 
-## Run locally
+- **Framework**: Next.js 15 (App Router)
+- **Database**: PostgreSQL via Prisma ORM
+- **Auth**: Supabase Auth with auto-provisioning
+- **PDF**: pdfmake for invoices and prescriptions
+- **Charts**: Recharts
+- **Styling**: Tailwind CSS + custom design system
+
+## Run Locally
 
 ```bash
 npm install
+cp .env.example .env   # Then fill in your Supabase + DB credentials
+npx prisma migrate dev --name init
+npm run prisma:seed
 npm run dev
 ```
 
-Open `http://localhost:3000`. Demo credentials are prefilled on the login screen.
+Open `http://localhost:3000` and log in with your clinic credentials.
 
-## Database
+## Environment Variables
+
+Copy `.env.example` and configure:
+
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection (transaction pooler) |
+| `DIRECT_URL` | PostgreSQL connection (session pooler, for migrations) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key |
+
+## Deployment
+
+Deployed on **Vercel** with automatic builds from the `main` branch.
 
 ```bash
-copy .env.example .env
-docker compose up -d
-npm run prisma:generate
-npm run prisma:validate
+git push origin main   # Triggers Vercel deployment
 ```
 
-For a first migration after configuring PostgreSQL:
+## License
 
-```bash
-npx prisma migrate dev --name init
-```
-
-## Production checklist
-
-1. Create a Supabase project and place credentials in `.env`.
-2. Connect Supabase Auth identities to `User.authUserId`.
-3. Add server actions/API routes for patient, appointment, billing, and file workflows.
-4. Store medical files in private Supabase Storage buckets with signed URLs.
-5. Configure Meta WhatsApp Business and an SMS fallback provider.
-6. Apply rate limiting, CSP, CSRF protection, upload validation, audit middleware, and retention policies.
-7. Run migrations against managed PostgreSQL and deploy the Next.js app to Vercel.
+Private — Bhagwati Clinic internal use only.

@@ -9,7 +9,7 @@ async function setupAuth() {
     process.exit(1);
   }
 
-  console.log("Setting up Supabase Auth users...");
+  console.log("Setting up Supabase Auth users for Bhagwati Clinic...");
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
     auth: {
       autoRefreshToken: false,
@@ -18,9 +18,10 @@ async function setupAuth() {
   });
 
   const usersToCreate = [
-    { email: "doctor@homeocare.in", password: "homeocare" },
-    { email: "admin@homeocare.in", password: "homeocare" },
-    { email: "reception@homeocare.in", password: "homeocare" },
+    { email: "doctor@bhagavaticlinic.in", password: "homeocare123" },
+    { email: "dr.takpire@bhagavaticlinic.com", password: "homeocare123" },
+    { email: "lab@bhagavaticlinic.in", password: "homeocare123" },
+    { email: "pharma@bhagavaticlinic.in", password: "homeocare123" },
   ];
 
   for (const user of usersToCreate) {

@@ -47,9 +47,8 @@ const navGroups: { label: string; items: NavItem[] }[] = [
         href: "/appointments",
         label: "Appointments",
         icon: CalendarDays,
-        badge: "12",
       },
-      { href: "/follow-ups", label: "Follow-Ups", icon: History, badge: "7" },
+      { href: "/follow-ups", label: "Follow-Ups", icon: History },
     ],
   },
   {
@@ -122,7 +121,7 @@ export function Sidebar({
             </span>
           )}
           <div>
-            <strong>{settings?.name || "HomeoCare Pro"}</strong>
+            <strong>{settings?.name || "Bhagwati Clinic"}</strong>
             <small>Enterprise</small>
           </div>
           <button className="sidebar-close" onClick={onClose}>

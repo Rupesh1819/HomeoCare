@@ -3,18 +3,18 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Seeding HomeoCare Pro database...");
+  console.log("🌱 Seeding Bhagwati Clinic database...");
 
   // 1. Clinic
   const clinic = await prisma.clinic.upsert({
     where: { registrationNumber: "HC-PUNE-2024" },
     update: {},
     create: {
-      name: "HomeoCare Pro",
+      name: "Bhagwati Clinic",
       registrationNumber: "HC-PUNE-2024",
       gstin: "27AABCH1234F1Z5",
       phone: "+91 20 4102 2020",
-      email: "admin@homeocare.in",
+      email: "admin@bhagavaticlinic.in",
       timezone: "Asia/Kolkata",
       language: "en",
     },
@@ -30,7 +30,7 @@ async function main() {
       name: "Navgaon Clinic",
       code: "NAVGAON",
       phone: "+91 20 4102 2020",
-      email: "navgaon@homeocare.in",
+      email: "navgaon@bhagavaticlinic.in",
       address: "Navgaon is a village located in the Paithan Sub-District of Chhatrapati Sambhajinagar",
       city: "Chhatrapati Sambhajinagar",
       state: "Maharashtra",

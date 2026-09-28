@@ -21,7 +21,7 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
-# NOTE: .env.example is SAFE and should be committed
+# NOTE: .env.example is intentionally NOT ignored — it's safe and helps new devs
 
 # ========================
 # Prisma
